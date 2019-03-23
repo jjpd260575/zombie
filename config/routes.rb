@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :zombies
   get 'home/index'
   root 'home#index'

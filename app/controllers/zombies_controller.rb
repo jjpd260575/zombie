@@ -1,6 +1,6 @@
 class ZombiesController < ApplicationController
   before_action :set_zombie, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /zombies
   # GET /zombies.json
   def index
@@ -25,6 +25,7 @@ class ZombiesController < ApplicationController
   # POST /zombies.json
   def create
     @zombie = Zombie.new(zombie_params)
+    @zombie.user =  current_user
 
     respond_to do |format|
       if @zombie.save
